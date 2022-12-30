@@ -6,53 +6,104 @@ import {
   FirebaseDatabaseNode,
 } from "@react-firebase/database";
 import { firebaseConfig } from "../firebase";
-import TablaGastos from "./TablaGastos";
-import NuevoGasto from "./NuevoGasto";
+//import TablaGastos from "./TablaGastos";
+import NuevoCurso from "./NuevoCurso";
 
 class Formm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      detalle: "",
-      costo: 0,
-      categoria: ""
+      nrc:"",
+      edificio:null,
+      nombreee:"",
+      lunes:"disponible",
+      martes:"disponible",
+      miercoles:"disponible",
+      jueves:"disponible",
+      viernes:"disponible",
+      profesor:""
     };
-    this.setCategoria = this.setCategoria.bind(this);
+    this.setEdificio = this.setEdificio.bind(this);
     console.log(this.state);
   }
 
-  setDetalle = (event) => {
+  setNRC = (event) => {
     this.setState(
-      { detalle: event.target.value },
+      { nrc: event.target.value },
+      console.log(event.target.value)
+    );
+  };
+ 
+  setNombree = (event) => {
+    this.setState(
+      { nombreee: event.target.value },
+      console.log(event.target.value)
+    );
+  };
+  setLunes = (event) => {
+    this.setState(
+      { lunes: event.target.value },
       console.log(event.target.value)
     );
   };
 
-  setCosto = (event) => {
+  setMartes = (event) => {
     this.setState(
-      { costo: event.target.value },
+      { martes: event.target.value },
       console.log(event.target.value)
     );
   };
 
-  setCategoria = (selectedCategoria) => {
-    this.setState({ categoria: selectedCategoria.target.value });
+  setMiercoles = (event) => {
+    this.setState(
+      { miercoles: event.target.value },
+      console.log(event.target.value)
+    );
+  };
+  setJueves = (event) => {
+    this.setState(
+      { jueves: event.target.value },
+      console.log(event.target.value)
+    );
+  };
+  setViernes = (event) => {
+    this.setState(
+      { viernes: event.target.value },
+      console.log(event.target.value)
+    );
+  };
+  setProfesor = (event) => {
+    this.setState(
+      { profesor: event.target.value },
+      console.log(event.target.value)
+    );
+  };
+
+
+  setEdificio = (selectedEdificio) => {
+    this.setState({ edificio: selectedEdificio.target.value });
   };
 
   clean = () => {
     this.setState({
-        detalle: "",
-        costo: 0,
-        categoria: ""
+      nrc:"",
+      edificio:"",
+      nombreee:"",
+      lunes:"",
+      martes:"",
+      miercoles:"",
+      jueves:"",
+      viernes:"",
+      profesor:""
     })
   }
 
   render() {
-    const { detalle, costo, categoria } = this.state;
+    const { edificio,lunes,martes,miercoles,jueves,viernes, nombreee,nrc,profesor } = this.state;
     return (
       <div>
         <FirebaseDatabaseProvider firebase={firebase} {...firebaseConfig}>
-          <FirebaseDatabaseNode path="categoria/">
+          <FirebaseDatabaseNode path="edificios/">
             {(data) => {
               const { value } = data;
               if (value === null || typeof value === "undefined") return null;
@@ -61,11 +112,11 @@ class Formm extends Component {
                 <div className="form-group col-md-6">
                   <label htmlFor="">Ingrese el tipo:</label>
                   <select
-                    onChange={this.setCategoria}
-                    value={categoria}
+                    onChange={this.setEdificio}
+                    value={edificio}
                     className="form-control"
                   >
-                    <option value={null}>Seleccione una categoría</option>
+                    <option value={edificio}>Seleccione un edificio</option>
                     {values.map((value) => {
                       return (
                         <option key={value} value={value}>
@@ -81,34 +132,123 @@ class Formm extends Component {
         </FirebaseDatabaseProvider>
         <div className="row justify-content-center">
           <div className="form-group col-md-6">
-            <label htmlFor="">Ingrese el costo:</label>
+            <label htmlFor="">Ingrese el NRC:</label>
             <input
-              onChange={this.setCosto}
-              type="number"
-              name="costo"
-              id="costo"
+              onChange={this.setNRC}
+              type="text"
+              maxLength={100}
+              name="nrc"
+              id="nrc"
               className="form-control"
-              value={costo}
+              value={nrc}
             />
           </div>
-        </div>
+        </div> 
+
         <div className="row justify-content-center">
           <div className="form-group col-md-6">
-            <label htmlFor="">Ingrese un detalle:</label>
+            <label htmlFor="">Ingrese Nombre de la EE:</label>
             <input
-              onChange={this.setDetalle}
+              onChange={this.setNombree}
               type="text"
-              name="detalle"
-              id="detalle"
+              maxLength={100}
+              name="nombre"
+              id="nombre"
               className="form-control"
-              value={detalle}
+              value={nombreee}
             />
           </div>
         </div>
-        <NuevoGasto detail={detalle} cost={costo} categoria={categoria} clean={this.clean}/>
-        
+
+        <div className="row justify-content-center">
+          <div className="form-group col-md-6">
+            <label htmlFor="">Nombre del profesor:</label>
+            <input
+              onChange={this.setProfesor}
+              type="text"
+              maxLength={100}
+              name="nombrep"
+              id="nombrep"
+              className="form-control"
+              value={profesor}
+            />
+          </div>
+        </div> 
+
+
+        <div className="row justify-content-center">
+          <div className="form-group col-md-6">
+            <div className="row justify-content-center">
+            <label htmlFor="">Ingrese El horario:</label>
+            <div className="col-sm-4">
+            <label >Lunes:</label>
+            <input
+              onChange={this.setLunes}
+              type="text"
+              name="lunes"
+              id="lunes"
+              className="form-control"
+              value={lunes}
+            />
+            </div>
+            <div className="col-sm-4">
+            <label >Martes:</label>
+            <input
+              onChange={this.setMartes}
+              type="text"
+              name="martes"
+              id="martes"
+              className="form-control"
+              value={martes}
+            />
+            </div>
+            <div className="col-sm-4">
+            <label>Miercoles:</label>
+            <input
+              onChange={this.setMiercoles}
+              type="text"
+              name="miercoles"
+              id="miercoles"
+              className="form-control"
+              value={miercoles}
+            />
+            </div>
+            </div>
+            <div className="row justify-content-center">
+
+            <div className="col-sm-6">
+            <label>Jueves:</label>
+            <input
+              onChange={this.setJueves}
+              type="text"
+              name="jueves"
+              id="jueves"
+              className="form-control"
+              value={jueves}
+            />
+            </div>
+
+            <div className="col-sm-6">
+            <label >Viernes:</label>
+            <input
+              onChange={this.setViernes}
+              type="text"
+              name="viernes"
+              id="viernes"
+              className="form-control"
+              value={viernes}
+            />
+            </div>
+            </div>
+            
+          </div>
+        </div>
+         
+          <NuevoCurso nrc={nrc} nombreee={nombreee} lunes={lunes} martes={martes} miercoles={miercoles}
+         jueves={jueves} viernes={viernes} edificio={edificio} profesor={profesor} clean={this.clean}/>
+         
         <br />
-        <TablaGastos />
+        {/* <TablaGastos /> */}
       </div>
     );
     

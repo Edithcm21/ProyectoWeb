@@ -8,17 +8,17 @@ import {
 import { firebaseConfig } from "../firebase";
 import Select from './Select'
 
-class GetCategoria extends Component {
+class GetEdificio extends Component {
   render() {
     return (
       <div>
         <FirebaseDatabaseProvider firebase={firebase} {...firebaseConfig}>
-          <FirebaseDatabaseNode path="categoria/">
+          <FirebaseDatabaseNode path="edificios/">
             {(data) => {
               const { value } = data;
               if (value === null || typeof value === "undefined") return null;
               const values = Object.values(value);
-              return <Select categoria={values}/>
+              return <Select edificios={values}/>
             }}
           </FirebaseDatabaseNode>
         </FirebaseDatabaseProvider>
@@ -27,4 +27,4 @@ class GetCategoria extends Component {
   }
 }
 
-export default GetCategoria;
+export default GetEdificio;

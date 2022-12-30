@@ -6,7 +6,7 @@ import {
   FirebaseDatabaseNode,
 } from "@react-firebase/database";
 import { firebaseConfig } from "../firebase";
-import ListaGastos from './ListaGastos'
+import ListaCursos from './ListaCursos'
 
 class TablaGastos extends Component {
     render() {
@@ -23,12 +23,12 @@ class TablaGastos extends Component {
                         </tr>
                     </thead>                                                        
                     <FirebaseDatabaseProvider firebase={firebase} {...firebaseConfig}>
-                        <FirebaseDatabaseNode path="gastos/" limitToFirst={3} orderByValue={"fecha"}>
+                        <FirebaseDatabaseNode path="gastos/" limitToFirst={5} orderByValue={"fecha"}>
                             {(data) => {
                                 const { value } = data;
                                 if (value === null || typeof value === "undefined") return null;                                
                                 const values = Object.values(value);
-                                return <ListaGastos items={values} />
+                                return <ListaCursos items={values} />
                             }}
                         </FirebaseDatabaseNode>
                     </FirebaseDatabaseProvider>

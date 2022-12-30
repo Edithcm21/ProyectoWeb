@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ListaGastos extends Component {
+class ListaCursos extends Component {
     render(){
         return(
             <tbody>
@@ -22,4 +22,4 @@ class ListaGastos extends Component {
     }
 }
 
-export default ListaGastos;
+export default ListaCursos;
