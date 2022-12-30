@@ -16,14 +16,20 @@ class TablaGastos extends Component {
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>Categoria</th>
-                            <th>Costo</th>
-                            <th>Detalle</th>
-                            <th>Fecha</th>
+                            <th>NRC</th>
+                            <th>Nombre EE</th>
+                            <th>Lunes</th>
+                            <th>Martes</th>
+                            <th>Miercoles</th>
+                            <th>Jueves</th>
+                            <th>Viernes</th>
+                            <th>Profesor</th>
+                            <th>Edificio</th>
+                           
                         </tr>
                     </thead>                                                        
                     <FirebaseDatabaseProvider firebase={firebase} {...firebaseConfig}>
-                        <FirebaseDatabaseNode path="gastos/" limitToFirst={5} orderByValue={"fecha"}>
+                        <FirebaseDatabaseNode path="Cursos/" limitToFirst={100}>
                             {(data) => {
                                 const { value } = data;
                                 if (value === null || typeof value === "undefined") return null;                                

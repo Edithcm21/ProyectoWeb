@@ -6,7 +6,7 @@ import {
   FirebaseDatabaseNode,
 } from "@react-firebase/database";
 import { firebaseConfig } from "../firebase";
-//import TablaGastos from "./TablaGastos";
+import TablaCursos from "./TablaCursos";
 import NuevoCurso from "./NuevoCurso";
 
 class Formm extends Component {
@@ -248,7 +248,7 @@ class Formm extends Component {
          jueves={jueves} viernes={viernes} edificio={edificio} profesor={profesor} clean={this.clean}/>
          
         <br />
-        {/* <TablaGastos /> */}
+        <TablaCursos />
       </div>
     );
     
